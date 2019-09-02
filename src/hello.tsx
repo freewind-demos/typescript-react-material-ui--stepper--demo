@@ -6,6 +6,21 @@ import Button from '@material-ui/core/Button';
 
 const labels = ['Step 1', 'Step 2', 'Step 3'];
 
+const stepperConfig = [
+  {
+    label: 'Step 1',
+    component: <div>Content of step 1</div>
+  },
+  {
+    label: 'Step 2',
+    component: <div>Content of step 2</div>
+  },
+  {
+    label: 'Step 3',
+    component: <div>Content of step 3</div>
+  }
+]
+
 export default function MyList() {
   const [activeStep, setActiveStep] = useState(0)
 
@@ -23,15 +38,14 @@ export default function MyList() {
   return <div>
     <Stepper activeStep={activeStep} alternativeLabel>
       {
-        labels.map(label => <Step key={label}><StepLabel>{label}</StepLabel></Step>)
+        stepperConfig.map(it => it.label).map(label => <Step key={label}><StepLabel>{label}</StepLabel></Step>)
       }
     </Stepper>
-    {content(activeStep)}
+    {stepperConfig[activeStep].component}
     {
-      activeStep >= labels.length
+      activeStep >= stepperConfig.length
         ? <Button variant='outlined' onClick={() => setActiveStep(0)}>Reset</Button>
         : <Button variant='outlined' onClick={() => setActiveStep(activeStep + 1)}>Next</Button>
     }
-
   </div>
 }
