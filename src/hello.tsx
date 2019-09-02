@@ -4,6 +4,8 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 
+const labels = ['Step 1', 'Step 2', 'Step 3'];
+
 export default function MyList() {
   const [activeStep, setActiveStep] = useState(0)
 
@@ -20,13 +22,13 @@ export default function MyList() {
 
   return <div>
     <Stepper activeStep={activeStep} alternativeLabel>
-      <Step><StepLabel>Step 1</StepLabel></Step>
-      <Step><StepLabel>Step 2</StepLabel></Step>
-      <Step><StepLabel>Step 3</StepLabel></Step>
+      {
+        labels.map(label => <Step key={label}><StepLabel>{label}</StepLabel></Step>)
+      }
     </Stepper>
     {content(activeStep)}
     {
-      activeStep >= 3
+      activeStep >= labels.length
         ? <Button variant='outlined' onClick={() => setActiveStep(0)}>Reset</Button>
         : <Button variant='outlined' onClick={() => setActiveStep(activeStep + 1)}>Next</Button>
     }
