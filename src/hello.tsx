@@ -4,8 +4,6 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 
-const labels = ['Step 1', 'Step 2', 'Step 3'];
-
 const stepperConfig = [
   {
     label: 'Step 1',
@@ -23,17 +21,6 @@ const stepperConfig = [
 
 export default function MyList() {
   const [activeStep, setActiveStep] = useState(0)
-
-  function content(activeStep: number) {
-    switch (activeStep) {
-      case 0 :
-        return <div>Content of step 1</div>
-      case 1:
-        return <div>Content of step 2</div>
-      case 2:
-        return <div>Content of step 3</div>
-    }
-  }
 
   return <div>
     <Stepper activeStep={activeStep} alternativeLabel>
